@@ -1,0 +1,102 @@
+<html>
+  <style>
+    input:invalid {
+      border: 1px solid red;
+    }
+
+    input:valid {
+      border: 1px solid black;
+    }
+  </style>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+
+  <body class="bg-gray-300">
+    <h1
+      class="text-7xl p-4 font-bold text-red-500 flex justify-center items-center"
+    >
+      Form
+    </h1>
+    <form id="form" class="p-12 gap-4 flex flex-col items-center" action="">
+      <div class="flex flex-col gap-4">
+        <div>
+          <label class="font-bold" for="name">Name</label>
+          <input
+            class="rounded-lg p-2"
+            type="text"
+            id="name"
+            name="name"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="font-bold" for="email">Email</label>
+          <input
+            class="rounded-lg p-2"
+            type="email"
+            id="email"
+            name="email"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="font-bold" for="password">Password</label>
+          <input
+            class="rounded-lg p-2"
+            type="password"
+            id="password"
+            name="password"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="font-bold" for="dob">Date of Birth</label>
+          <input
+            class="rounded-lg p-2"
+            type="date"
+            id="dob"
+            name="dob"
+            required
+          />
+        </div>
+        <div>
+          <input type="checkbox" id="acceptTerms" name="acceptTerms" />
+          <label class="font-bold" for="acceptTerms"
+            >Accept Terms & Conditions</label
+          >
+        </div>
+
+        <div id="error" class="text-red-500"></div>
+
+        <button
+          class="p-3 rounded-lg w-full flex justify-center items-center bg-blue-500 hover:bg-blue-700 font-bold text-white"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+
+    <div class="w-full flex justify-center">
+      <button
+        id="showEntries"
+        class="w-1/5 bg-green-500 hover:bg-green-700 rounded-lg p-3 font-bold text-white"
+      >
+        Show Entries
+      </button>
+    </div>
+    <div class="flex flex-col justify-center items-center" id="entries"></div>
+  </body>
+
+  <script type="text/javascript" src="main.js"></script>
+</html>
