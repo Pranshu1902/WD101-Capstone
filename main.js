@@ -10,7 +10,7 @@ const saveData = (data) => {
   }
 };
 
-// dob validator
+// validator
 function validator(event) {
   event.preventDefault();
 
@@ -65,40 +65,41 @@ let form = document.getElementById("form");
 form.addEventListener("submit", validator, true);
 
 //show entries
-function showEntries(event) {
+function showEntriesInTable(event) {
   event.preventDefault();
 
   let entries = JSON.parse(localStorage.getItem("entries"));
-  let output = document.getElementById("entries");
+  let output = document.getElementById("table");
+
+  // clearing the table
+  var rowCount = output.rows.length;
+  for (var i = rowCount - 1; i > 0; i--) {
+    output.deleteRow(i);
+  }
+
+  // add entries to table
   if (entries) {
-    let body = entries.map((entry, index) => {
-      return `
-      <div class="flex flex-col gap-4 justify-start items-start pt-6 pb-6">
-      <p class="font-bold text-red-500 text-3xl">Entry ${index + 1}</p>
-        <div class="flex">
-            <p class="font-bold">Name:&nbsp;</p>
-            <p>${entry.name}</p>
-        </div>
-        <div class="flex">
-            <p class="font-bold">Email:&nbsp;</p>
-            <p>${entry.email}</p>
-        </div>
-        <div class="flex">
-            <p class="font-bold">Password:&nbsp;</p>
-            <p>${entry.password}</p>
-        </div>
-        <div class="flex">
-            <p class="font-bold">DOB:&nbsp;</p>
-            <p>${entry.dob}</p>
-        </div>
-      </div>`;
+    entries.forEach((entry, index) => {
+      let row = output.insertRow(index + 1);
+      let t1 = row.insertCell(0);
+      t1.innerHTML = `<td>${index + 1}</td>`;
+      let t2 = row.insertCell(1);
+      t2.innerHTML = `<td>${entry.name}</td>`;
+      let t3 = row.insertCell(2);
+      t3.innerHTML = `<td>${entry.email}</td>`;
+      let t4 = row.insertCell(3);
+      t4.innerHTML = `<td>${entry.password}</td>`;
+      let t5 = row.insertCell(4);
+      t5.innerHTML = `<td>${entry.dob}</td>`;
     });
-    output.innerHTML = body.join("\n");
   } else {
-    output.innerHTML = "No entries";
+    let row = output.insertRow(1);
+    let t1 = row.insertCell(0);
+    t1.innerHTML = `<td>No entries</td>`;
+    t1.classList.add("text-red-500");
   }
 }
 
 // button to show entries
 const showEntriesBtn = document.getElementById("showEntries");
-showEntriesBtn.addEventListener("click", showEntries, true);
+showEntriesBtn.addEventListener("click", showEntriesInTable, true);
